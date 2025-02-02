@@ -1,10 +1,24 @@
 import axios from "axios";
 
-export default async function fetchAllCountries() {
+export async function fetchAllCountries() {
   try {
-    const response = await axios.get("https://restcountries.com/v3.1/all?sort=population");
+    const response = await axios.get(
+      "https://restcountries.com/v3.1/all?sort=population",
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error to fetch all countries.");
+  }
+}
+
+export async function fetchCountryByName(query: string) {
+  try {
+    const response = await axios.get(
+      `https://restcountries.com/v3.1/name/${query}`,
+    );
     return response.data;
   } catch (error) {
     console.error(error);
+    throw new Error("Error to fetch country by name.");
   }
 }
