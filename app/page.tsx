@@ -36,7 +36,9 @@ export default async function Page(props: {
       </section>
 
       <section>
+      <div className="overflow-x-auto">
         <DataTable query={query} />
+        </div>
       </section>
     </main>
   );
