@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --background: #18181b;
+  --foreground: #d1d5dc;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--foreground);
+  background-color: var(--background);
+  background-image: url("../public/hero-image-sm.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  padding:0 0.875rem 0 0.875rem;
+}
