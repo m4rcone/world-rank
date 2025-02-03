@@ -1,7 +1,7 @@
 import { fetchAllCountries } from "../lib/data";
 import Image from "next/image";
 
-export default async function DataTable({ query, un, independent }: { query: string, un: string, independent: string }) {
+export default async function DataTable({ query, un, independent, sortBy }: { query: string, un: string, independent: string, sortBy: string }) {
   let countries = [];
 
   try {
@@ -11,7 +11,9 @@ export default async function DataTable({ query, un, independent }: { query: str
     console.error(error);
   }
 
-  let filteredCountries = countries;
+  let filteredCountries = countries.sort((a, b) => {
+    return b.population - a.population;
+  })
 
   if (query) {
     filteredCountries = filteredCountries.filter(country =>
@@ -30,6 +32,20 @@ export default async function DataTable({ query, un, independent }: { query: str
         return country.independent;
       }
       return false;
+    });
+  }
+
+  if (sortBy) {
+    filteredCountries = filteredCountries.sort((a, b) => {
+      if (sortBy === "name") {
+        return a.name.common.localeCompare(b.name.common);
+      }
+      if (sortBy === "area") {
+        return b.area - a.area;
+      }
+      if (sortBy === "population") {
+        return b.population - a.population;
+      }
     });
   }
 
@@ -60,7 +76,7 @@ export default async function DataTable({ query, un, independent }: { query: str
             </div>
             <div className="pt-3 pb-3 pr-3 table-cell align-middle">{data.name.common}</div>
             <div className="pt-3 pb-3 pr-3 table-cell align-middle">{formatNumber(data.population)}</div>
-            <div className="pt-3 pb-3 pr-3 table-cell align-middle">{formatNumber(data.population)}</div>
+            <div className="pt-3 pb-3 pr-3 table-cell align-middle">{formatNumber(data.area)}</div>
           </div>
         )) : (
           <div className="pt-3 pb-3 pr-3 table-cell align-middle">No country found.</div>

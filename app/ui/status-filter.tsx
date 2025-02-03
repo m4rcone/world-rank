@@ -10,7 +10,7 @@ export default function StatusFilter() {
   const isMemberUNChecked = searchParams.get("un") === "true";
   const isIndependentChecked = searchParams.get("independent") === "true";
   
-  const handleFilters = (filter: string, value: boolean) => {
+  const handleFilter = (filter: string, value: boolean) => {
     const params = new URLSearchParams(searchParams);
     if (!value) {
       params.set(filter, "true");
@@ -27,7 +27,7 @@ export default function StatusFilter() {
           type="checkbox"
           className="hidden peer"
           checked={isMemberUNChecked}
-          onChange={e => handleFilters("un", !e.target.checked)}
+          onChange={e => handleFilter("un", !e.target.checked)}
         />
         <div
           className="w-6 h-6 rounded-md border-2 border-gray-300 peer-checked:bg-blue-500 peer-checked:border-blue-500
@@ -41,7 +41,7 @@ export default function StatusFilter() {
           type="checkbox"
           className="hidden peer"
           checked={isIndependentChecked}
-          onChange={e => handleFilters("independent", !e.target.checked)}
+          onChange={e => handleFilter("independent", !e.target.checked)}
         />
         <div
           className="w-6 h-6 rounded-md border-2 border-gray-300 peer-checked:bg-blue-500 peer-checked:border-blue-500

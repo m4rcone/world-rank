@@ -1,13 +1,54 @@
+'use client';
+
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function SortSelect() {
-  const options = ["Population", "Name", "Área (km²)"];
+  const options = [
+    {
+      id: 1,
+      label: "Population",
+      value: "population"
+    },
+    {
+      id: 2,
+      label: "Name",
+      value: "name"
+    },
+    {
+      id: 3,
+      label: "Área (km²)",
+      value: "area"
+    },
+  ];
+
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  function handleSelect(value: string) {
+    const params = new URLSearchParams(searchParams);
+    if(value) {
+      params.set("sortBy", value);
+    } else {
+      params.delete("sortBy")
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }
 
   return (
     <div className="relative">
-      <select className="w-full appearance-none px-4 py-2 border border-zinc-800 rounded-xl text-sm">
+      <select
+        defaultValue={searchParams?.get("sortBy")} 
+        onChange={e => handleSelect(e.target.value)}
+        className="w-full appearance-none px-4 py-2 border border-zinc-800 rounded-xl text-sm">
         {options.map(option => (
-          <option key={option} className="px-4 py-4 bg-zinc-900 rounded-xl">{option}</option>
+          <option
+            key={option.id}
+            value={option.value}
+            className="px-4 py-4 bg-zinc-900 rounded-xl">
+            {option.label}
+          </option>
         ))}
       </select>
       <Image
