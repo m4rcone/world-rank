@@ -7,10 +7,14 @@ import DataTable from "./ui/data-table";
 export default async function Page(props: {
   searchParams?: Promise<{
     query?: string;
+    un?: string;
+    independent?: string;
   }>
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
+  const un = searchParams?.un || '';
+  const independent = searchParams?.independent || '';
 
   return (
     <main className="px-3 py-6 flex flex-col justify-center gap-6 bg-zinc-900 border border-zinc-800 rounded-xl">
@@ -37,7 +41,7 @@ export default async function Page(props: {
 
       <section>
       <div className="overflow-x-auto">
-        <DataTable query={query} />
+        <DataTable query={query} un={un} independent={independent}/>
         </div>
       </section>
     </main>
