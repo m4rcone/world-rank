@@ -10,6 +10,7 @@ export default async function Page(props: {
     un?: string;
     independent?: string;
     sortBy?: string;
+    region?: string;
   }>
 }) {
   const searchParams = await props.searchParams;
@@ -17,6 +18,7 @@ export default async function Page(props: {
   const un = searchParams?.un || '';
   const independent = searchParams?.independent || '';
   const sortBy = searchParams?.sortBy || '';
+  const region = searchParams?.region || '';
 
   return (
     <main className="px-3 py-6 flex flex-col justify-center gap-6 bg-zinc-900 border border-zinc-800 rounded-xl">
@@ -43,7 +45,7 @@ export default async function Page(props: {
 
       <section>
         <div className="overflow-x-auto">
-          <DataTable query={query} un={un} independent={independent} sortBy={sortBy}/>
+          <DataTable query={query} un={un} independent={independent} sortBy={sortBy} region={region} />
         </div>
       </section>
     </main>

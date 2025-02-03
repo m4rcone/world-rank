@@ -1,7 +1,15 @@
 import { fetchAllCountries } from "../lib/data";
 import Image from "next/image";
 
-export default async function DataTable({ query, un, independent, sortBy }: { query: string, un: string, independent: string, sortBy: string }) {
+interface DataTableProps {
+  query: string,
+  un: string,
+  independent: string,
+  sortBy: string,
+  region: string,
+}
+
+export default async function DataTable({ query, un, independent, sortBy, region }: DataTableProps) {
   let countries = [];
 
   try {
@@ -21,6 +29,12 @@ export default async function DataTable({ query, un, independent, sortBy }: { qu
       country.region.toLowerCase().includes(query.toLowerCase()) ||
       country.subregion?.toLowerCase().includes(query.toLowerCase())
     );
+  }
+
+  if (region) {
+    filteredCountries = filteredCountries.filter(country => {
+      return region.split(",").includes(country.region);
+    });
   }
 
   if (un || independent) {
