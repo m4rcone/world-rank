@@ -40,8 +40,8 @@ export default async function Page(props: {
       </section>
 
       <section>
-      <div className="overflow-x-auto">
-        <DataTable query={query} un={un} independent={independent} />
+        <div className="overflow-x-auto">
+          <DataTable query={query} un={un} independent={independent} />
         </div>
       </section>
     </main>

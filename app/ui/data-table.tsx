@@ -1,4 +1,4 @@
-import { fetchAllCountries, fetchCountryByName } from "../lib/data";
+import { fetchAllCountries } from "../lib/data";
 import Image from "next/image";
 
 export default async function DataTable({ query, un, independent }: { query: string, un: string, independent: string }) {
