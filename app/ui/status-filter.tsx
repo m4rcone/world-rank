@@ -21,7 +21,7 @@ export default function StatusFilter() {
   };
 
   return (
-    <fieldset className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2">
       <label className="flex items-center gap-2 cursor-pointer">
         <input
           type="checkbox"
@@ -49,6 +49,6 @@ export default function StatusFilter() {
         </div>
         <span className="text-sm font-medium">Independent</span>
       </label>
-    </fieldset>
+    </div>
   );
 }

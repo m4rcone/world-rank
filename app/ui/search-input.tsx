@@ -35,7 +35,8 @@ export default function SearchInput({ placeholder }: { placeholder: string }) {
           handleSearch(e.target.value);
         }}
         defaultValue={searchParams.get('query')?.toString()}
-        className="w-full text-sm pl-10 pr-4 py-2 bg-zinc-800 rounded-xl placeholder:text-gray-300 placeholder:text-sm placeholder:truncate"
+        className="w-full text-sm pl-10 pr-4 py-2 bg-zinc-800 rounded-xl placeholder:text-gray-300 placeholder:text-sm placeholder:truncate
+        md:w-sm"
       />
     </div>
   );
