@@ -7,7 +7,7 @@ export default function SortSelect() {
     <div className="relative">
       <select className="w-full appearance-none px-4 py-2 border border-zinc-800 rounded-xl text-sm">
         {options.map(option => (
-          <option className="px-4 py-4 bg-zinc-900 rounded-xl">{option}</option>
+          <option key={option} className="px-4 py-4 bg-zinc-900 rounded-xl">{option}</option>
         ))}
       </select>
       <Image
