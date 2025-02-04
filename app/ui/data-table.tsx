@@ -91,7 +91,7 @@ export default function DataTable({
           <div className="hidden xl:table-cell xl:border-b xl:border-zinc-800 xl:pb-4">
             Region
           </div>
-          <div className="hidden xl:table-cell xl:border-b xl:border-zinc-800 xl:pb-4">
+          <div className="xl:table-cell xl:border-b xl:border-zinc-800 xl:pb-4">
             More
           </div>
         </div>
