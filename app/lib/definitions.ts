@@ -10,5 +10,5 @@ export type Country = {
   independent: boolean;
   flags: {
     svg: string;
-  }
-}
+  };
+};

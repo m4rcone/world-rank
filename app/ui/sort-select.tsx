@@ -24,13 +24,13 @@ export default function SortSelect() {
       <select
         defaultValue={searchParams?.get("sortBy")}
         onChange={(e) => handleSelect(e.target.value)}
-        className="w-full appearance-none px-4 py-2 border border-zinc-800 rounded-xl text-sm"
+        className="w-full appearance-none rounded-xl border border-zinc-800 px-4 py-2 text-sm"
       >
         {options.map((option) => (
           <option
             key={option.id}
             value={option.value}
-            className="px-4 py-4 bg-zinc-900 rounded-xl"
+            className="rounded-xl bg-zinc-900 px-4 py-4"
           >
             {option.label}
           </option>
@@ -41,7 +41,7 @@ export default function SortSelect() {
         height={24}
         src="expand_down.svg"
         alt="expand down icon"
-        className="absolute bottom-2 right-2 pointer-events-none"
+        className="pointer-events-none absolute right-2 bottom-2"
       />
     </div>
   );

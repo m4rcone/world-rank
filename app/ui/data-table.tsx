@@ -22,17 +22,15 @@ export default function DataTable({
   region,
   countries,
 }: DataTableProps) {
-
   const { setCountriesFound } = useCountriesFound();
-  
+
   let filteredCountries = countries.sort((a, b) => {
     return b.population - a.population;
   });
-  
+
   useEffect(() => {
     setCountriesFound(filteredCountries.length);
-  }, [filteredCountries])
-
+  }, [filteredCountries]);
 
   if (search) {
     filteredCountries = filteredCountries.filter(
@@ -75,24 +73,22 @@ export default function DataTable({
     });
   }
 
-
-
   const formatNumber = (number: number) =>
     new Intl.NumberFormat("pt-BR").format(number);
 
   return (
-    <div className="table-auto table w-full">
+    <div className="table w-full table-auto">
       <div className="table-header-group text-xs">
-        <div className="table-row ">
-          <div className="pb-4 border-b border-zinc-800 table-cell">Flag</div>
-          <div className="pb-4 border-b border-zinc-800 table-cell">Name</div>
-          <div className="pb-4 border-b border-zinc-800 table-cell">
+        <div className="table-row">
+          <div className="table-cell border-b border-zinc-800 pb-4">Flag</div>
+          <div className="table-cell border-b border-zinc-800 pb-4">Name</div>
+          <div className="table-cell border-b border-zinc-800 pb-4">
             Population
           </div>
-          <div className="pb-4 border-b border-zinc-800 table-cell">
+          <div className="table-cell border-b border-zinc-800 pb-4">
             Area (km²)
           </div>
-          <div className="hidden xl:pb-4 xl:border-b xl:border-zinc-800 xl:table-cell">
+          <div className="hidden xl:table-cell xl:border-b xl:border-zinc-800 xl:pb-4">
             Region
           </div>
         </div>
@@ -101,7 +97,7 @@ export default function DataTable({
         {filteredCountries.length > 0 ? (
           filteredCountries.map((data) => (
             <div key={data.name.common} className="table-row">
-              <div className="pt-3 pb-3 pr-3 table-cell align-middle">
+              <div className="table-cell pt-3 pr-3 pb-3 align-middle">
                 <Image
                   width={48}
                   height={48}
@@ -111,22 +107,22 @@ export default function DataTable({
                   style={{ height: "auto" }}
                 />
               </div>
-              <div className="pt-3 pb-3 pr-3 table-cell align-middle">
+              <div className="table-cell pt-3 pr-3 pb-3 align-middle">
                 {data.name.common}
               </div>
-              <div className="pt-3 pb-3 pr-3 table-cell align-middle">
+              <div className="table-cell pt-3 pr-3 pb-3 align-middle">
                 {formatNumber(data.population)}
               </div>
-              <div className="pt-3 pb-3 pr-3 table-cell align-middle">
+              <div className="table-cell pt-3 pr-3 pb-3 align-middle">
                 {formatNumber(data.area)}
               </div>
-              <div className="hidden xl:pt-3 xl:pb-3 xl:pr-3 xl:table-cell xl:align-middle">
+              <div className="hidden xl:table-cell xl:pt-3 xl:pr-3 xl:pb-3 xl:align-middle">
                 {data.region}
               </div>
             </div>
           ))
         ) : (
-          <div className="pt-3 pb-3 pr-3 table-cell align-middle">
+          <div className="table-cell pt-3 pr-3 pb-3 align-middle">
             No country found.
           </div>
         )}

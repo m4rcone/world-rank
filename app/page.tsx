@@ -27,24 +27,15 @@ export default async function Page(props: {
 
   return (
     <main>
-      <section
-        className="px-3 py-6 flex flex-col justify-center gap-6 bg-zinc-900 border border-zinc-800 rounded-xl
-        md:px-6"
-      >
+      <section className="flex flex-col justify-center gap-6 rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-6 md:px-6">
         <CountriesFoundProvider>
-          <header
-            className="flex flex-col gap-6
-          md:flex-row md:items-center md:justify-between"
-          >
+          <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <CountriesFound />
             <SearchInput placeholder="Search by Name, Region and Subregion" />
           </header>
 
-          <div
-            className="flex flex-col gap-6 
-          md:flex-row "
-          >
-            <section className="2xl:basis-xl md:basis-sm flex flex-col gap-6">
+          <div className="flex flex-col gap-6 md:flex-row">
+            <section className="flex flex-col gap-6 md:basis-sm 2xl:basis-xl">
               <fieldset className="flex flex-col gap-2">
                 <label className="text-xs font-medium">Sort by</label>
                 <SortSelect />

@@ -4,7 +4,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { regions } from "../lib/placeholders";
 
 export default function RegionFilter() {
-
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -36,7 +35,7 @@ export default function RegionFilter() {
         <button
           key={region.id}
           onClick={() => toggleRegion(region.value)}
-          className={`px-4 py-2 text-sm rounded-2xl font-medium cursor-pointer ${selectedRegions.includes(region.value) && "bg-zinc-800"}`}
+          className={`cursor-pointer rounded-2xl px-4 py-2 text-sm font-medium ${selectedRegions.includes(region.value) && "bg-zinc-800"}`}
         >
           {region.value}
         </button>
