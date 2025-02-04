@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -12,9 +12,9 @@ export default function SearchInput({ placeholder }: { placeholder: string }) {
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
-      params.set('query', term);
+      params.set("search", term);
     } else {
-      params.delete('query');
+      params.delete("search");
     }
     replace(`${pathname}?${params.toString()}`);
   }, 300);
@@ -34,7 +34,7 @@ export default function SearchInput({ placeholder }: { placeholder: string }) {
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
-        defaultValue={searchParams.get('query')?.toString()}
+        defaultValue={searchParams.get("search")?.toString()}
         className="w-full text-sm pl-10 pr-4 py-2 bg-zinc-800 rounded-xl placeholder:text-gray-300 placeholder:text-sm placeholder:truncate
         md:w-sm"
       />

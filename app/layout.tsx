@@ -1,11 +1,11 @@
-import './global.css'
-import { Be_Vietnam_Pro } from 'next/font/google'
-import Header from './ui/header';
+import "./global.css";
+import { Be_Vietnam_Pro } from "next/font/google";
+import Header from "./ui/header";
 
 const beVietnamPro = Be_Vietnam_Pro({
   weight: ["400", "500", "600", "700"],
-  subsets: ['latin'],
-})
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,

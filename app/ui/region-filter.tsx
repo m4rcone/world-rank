@@ -1,34 +1,9 @@
-'use client';
+"use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { regions } from "../lib/placeholders";
 
 export default function RegionFilter() {
-  const regions = [
-    {
-      id: 1,
-      value: "Americas"
-    },
-    {
-      id: 2,
-      value: "Antarctic"
-    },
-    {
-      id: 3,
-      value: "Africa"
-    },
-    {
-      id: 4,
-      value: "Asia"
-    },
-    {
-      id: 5,
-      value: "Europe"
-    },
-    {
-      id: 6,
-      value: "Oceania"
-    },
-  ];
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -38,10 +13,10 @@ export default function RegionFilter() {
 
   function toggleRegion(value: string) {
     const params = new URLSearchParams(searchParams);
-    let newSelectRegions = [...selectedRegions]
+    let newSelectRegions = [...selectedRegions];
 
     if (newSelectRegions.includes(value)) {
-      newSelectRegions = newSelectRegions.filter(region => region !== value);
+      newSelectRegions = newSelectRegions.filter((region) => region !== value);
     } else {
       newSelectRegions.push(value);
     }
@@ -55,10 +30,9 @@ export default function RegionFilter() {
     replace(`${pathname}?${params.toString()}`);
   }
 
-
   return (
     <div className="flex flex-wrap gap-x-4 gap-y-2">
-      {regions.map(region => (
+      {regions.map((region) => (
         <button
           key={region.id}
           onClick={() => toggleRegion(region.value)}
