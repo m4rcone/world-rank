@@ -11,3 +11,15 @@ export async function fetchAllCountries() {
     throw new Error("Error to fetch all countries.");
   }
 }
+
+export async function fetchCountryByCode(code: string) {
+  try {
+    const response = await axios.get(
+      `https://restcountries.com/v3.1/alpha/${code}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error to fetch country by code");
+  }
+}

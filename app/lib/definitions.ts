@@ -11,4 +11,5 @@ export type Country = {
   flags: {
     svg: string;
   };
+  cca3: string;
 };

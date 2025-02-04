@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useCountriesFound } from "../context/countries-found";
 import { useEffect } from "react";
 import { Country } from "../lib/definitions";
+import Link from "next/link";
+import { SquareArrowOutUpRight } from "lucide-react";
+import { formatNumber } from "../lib/utils";
 
 interface DataTableProps {
   search: string;
@@ -73,9 +76,6 @@ export default function DataTable({
     });
   }
 
-  const formatNumber = (number: number) =>
-    new Intl.NumberFormat("pt-BR").format(number);
-
   return (
     <div className="table w-full table-auto">
       <div className="table-header-group text-xs">
@@ -91,12 +91,15 @@ export default function DataTable({
           <div className="hidden xl:table-cell xl:border-b xl:border-zinc-800 xl:pb-4">
             Region
           </div>
+          <div className="hidden xl:table-cell xl:border-b xl:border-zinc-800 xl:pb-4">
+            More
+          </div>
         </div>
       </div>
       <div className="table-row-group text-sm">
         {filteredCountries.length > 0 ? (
           filteredCountries.map((data) => (
-            <div key={data.name.common} className="table-row">
+            <div key={data.name.common} className="table-row hover:bg-zinc-800">
               <div className="table-cell pt-3 pr-3 pb-3 align-middle">
                 <Image
                   width={48}
@@ -118,6 +121,11 @@ export default function DataTable({
               </div>
               <div className="hidden xl:table-cell xl:pt-3 xl:pr-3 xl:pb-3 xl:align-middle">
                 {data.region}
+              </div>
+              <div className="table-cell pt-3 pr-3 pb-3 align-middle">
+                <Link href={`/country?code=${data.cca3}`}>
+                  <SquareArrowOutUpRight />
+                </Link>
               </div>
             </div>
           ))
