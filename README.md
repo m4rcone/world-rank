@@ -1,13 +1,14 @@
 # World Ranks
 
-Desafio do <a href="https://devchallenges.io/challenge/country-page" target="blank">devChallenges.io</a> onde o principal aprendizado era trabalhar com uma quantidade maior e mais complicada de dados de uma API. Aproveiter para utilizar ferramentas como Nexts.js, React e Typescript para aprimorar meus conhecimentos.
+Desafio do <a href="https://devchallenges.io/challenge/country-page" target="blank">devChallenges.io</a> onde o principal aprendizado foi trabalhar com uma quantidade maior e mais complexa de dados de uma API. 
 
-<a href="https://world-ranks-sepia.vercel.app/" target="blank">Acesse aqui -></a>
+Aproveitei para utilizar ferramentas como Next.js, React e TypeScript para aprimorar meus conhecimentos.
+
+<a href="https://world-ranks-sepia.vercel.app/" target="blank">Acesse aqui</a>
 
 ## Tabela de conteúdos
 
 - [Sobre o projeto](#sobre-o-projeto)
-  - [Layout](#layout)
   - [Funcionalidades](#funcionalidades)
   - [O que aprendi](#o-que-aprendi)
 - [Como executar o projeto](#como-executar-o-projeto)
@@ -16,25 +17,29 @@ Desafio do <a href="https://devchallenges.io/challenge/country-page" target="bla
 
 ## Sobre o projeto
 
-World Ranks é uma página de classificação de países, onde a lista de países é adquirida através da <a href="https://restcountries.com/">API REST Countries</a>. A página permite pesquisa, classificação e filtragem. Também possui página com detalhes de cada país.
+World Ranks é uma página de classificação de países, onde a lista de países é adquirida através da <a href="https://restcountries.com/">API REST Countries</a>. A página permite pesquisa, classificação e filtragem, além de exibir detalhes individuais de cada país.
 
 ### Funcionalidades
 
-- Classificar os países por nome, população ou área (km²).
-- Filtrar por diversas regiões, que podem ser Américas, Antártida, Ásia, Europa ou Oceania.
-- Filtrar por países membros das Nações Unidas.
-- Filtrar por países independentes.
-- Pesquisar/filtrar países por seus nomes, regiões ou sub-regiões.
-- Visualizar o número total de países encontrados.
-- Selecionar um país e ver mais detalhes em na página do país.
-- Na página do país, os usuários podem ver informações como população, área, capital, moeda, língua...
-- Na página do país, os usuários podem ver os países vizinhos e selecionar para redirecionar para a página do país correspondente.
+- Classificação dos países por nome, população ou área (km²).
+- Filtragem por diversas regiões: Américas, Antártida, Ásia, Europa ou Oceania.
+- Filtragem por países membros das Nações Unidas.
+- Filtragem por países independentes.
+- Pesquisa/filtragem de países por nome, região ou sub-região.
+- Exibição do número total de países encontrados.
+- Visualização detalhada de um país em sua página específica.
+- Exibição de informações como população, área, capital, moeda e idioma na página do país.
+- Exibição de países vizinhos com links para suas respectivas páginas.
 
 ### O que aprendi
 
-Este projeto me ajudou a praticar e aprimorar meus conhecimentos em tecnologias como React, Next.js, Typescript e Tailwind CSS. Apresento a seguir algumas abordagens e conhecimentos adquiridos:
+Este projeto me ajudou a praticar e aprimorar meus conhecimentos em tecnologias como `React`, `Next.js`, `TypeScript` e `Tailwind CSS`. A seguir, algumas abordagens e aprendizados adquiridos:
 
-**Nexts.js:** utilizei pela primeira vez alguns hooks no `next/navigation` como `usePathname`, `useRouter`, `useSearchParams` que me permitiu controlar a navegação das páginas, retornar o caminho da URL e os dados passados por parâmetros. Segue exemplo do componente `search-input.tsx` onde também utilizei pela primeira vez o um hook chamado `useDebounced` que atrasa a execução de uma função no tempo informado, que no caso foi de 300 milissegundos. Usei essa abordagem pois na primeira versão, quando eu atualizava os parâmetros de busca da URL, o meu componente `data-table.tsx` fazia uma nova requisição na API e não queria que ele fizesse isso a cada letra digitada, porém mudei a abordagem para fazer apenas uma requisição e depois aplicar os filtros. Segue o código:
+**Nexts.js** 
+
+Utilizei pela primeira vez alguns hooks do `next/navigation`, como `usePathname`, `useRouter` e `useSearchParams`, que me permitiram controlar a navegação das páginas, recuperar o caminho da URL e acessar os dados passados por parâmetros. 
+
+No componente `search-input.tsx`, utilizei o hook `useDebouncedCallback`, que atrasa a execução de uma função pelo tempo especificado (neste caso, 300 milissegundos). Isso foi útil para evitar requisições excessivas de renderização do componente `data-table.tsx`. Segue o código:
 ```tsx
 export default function SearchInput({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
@@ -62,11 +67,15 @@ export default function SearchInput({ placeholder }: { placeholder: string }) {
         defaultValue={searchParams.get("search")?.toString()}
     ...
 ```
-**Tailwind CSS:** acredito que tailwind é uma questão de prática e que conforme o tempo de uso você acaba ficando mais ágil na utilização, foi o que consegui perceber nesse projeto. Também utilizei o `prettier-plugin-tailwindcss` que organiza as classes de estilização ao executar o script `lint:fix`.
+**Tailwind CSS**
 
-**React:** utilizei pela primeira vez o `createContext` do React que foi o que me permitiu resolver o maior desafio pra mim nesse projeto. Eu precisava passar a quantidade de países encontrados do meu componente `data-table.tsx` para o componente pai `page.tsx` porém esse componente era server side o que impedia eu usar hooks `useState` e `useEffect`. Então criei o contexto `countries-found.tsx` e um novo componente client side `countries-found.tsx` que permitiu eu passar informação de um para o outro. Segue o código:
+Com o uso contínuo, percebi que o `Tailwind CSS` torna a estilização mais ágil. Também utilizei o `prettier-plugin-tailwindcss`, que organiza as classes automaticamente ao executar o script `lint:fix`.
 
-context/countries-found.tsx
+**React** 
+
+Utilizei `createContext` pela primeira vez para resolver um problema importante: passar a quantidade de países encontrados do componente `data-table.tsx` para o componente pai `page.tsx`, que é renderizado no servidor (SSR). Como não poderia usar `useState` e `useEffect`, criei um contexto `countries-found.tsx` e um novo componente client-side `countries-found.tsx` para gerenciar essa informação. Segue a implementação:
+
+`context/countries-found.tsx`
 ```tsx
 "use client";
 import { createContext, useState, useContext } from "react";
@@ -96,7 +105,7 @@ export const CountriesFoundProvider = ({ children }) => {
 export const useCountriesFound = () => useContext(CountriesFoundContext);
 ```
 
-ui/countries-found.tsx
+`ui/countries-found.tsx`
 ```tsx
 "use client";
 import { useCountriesFound } from "../context/countries-found";
@@ -108,7 +117,7 @@ export default function ContriesFound() {
 }
 ```
 
-ui/data-table.tsx
+`ui/data-table.tsx`
 ```tsx
 "use client";
 import { useCountriesFound } from "../context/countries-found";
@@ -132,7 +141,7 @@ export default function DataTable({
 }
 ```
 
-app/page.tsx
+`app/page.tsx`
 ```tsx
 import { CountriesFoundProvider } from "./context/countries-found";
 ...
@@ -166,7 +175,10 @@ return (
 }
 ```
 
-**Typescrit/Axios:** Nesse projeto utilizei apenas a função `get` do `axios` mas foram dados um pouco mais completos o que me ajudou a melhorar meus conhecimentos em `Typescript` também, onde criei um arquivo `lib/definition.ts` para definir a estrutura dos dados de cada país do array e criei `lib.data.ts` para definir a função de `fetch` na `api`:
+**TypeScript / Axios**
+
+Neste projeto, utilizei `axios` para fazer requisições à API e aprimorei meus conhecimentos em `TypeScript`, definindo a estrutura dos dados no arquivo `lib/definition.ts`:
+
 ```ts
 export type Country = {
   name: {
@@ -200,18 +212,6 @@ export async function fetchAllCountries() {
     throw new Error("Error to fetch all countries.");
   }
 }
-
-export async function fetchCountryByCode(code: string) {
-  try {
-    const response = await axios.get(
-      `https://restcountries.com/v3.1/alpha/${code}`,
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Error to fetch country by code");
-  }
-}
 ```
 
 ## Como executar o projeto
@@ -234,18 +234,18 @@ $ npm run dev
 
 ## Tecnologias utilizadas
 
--   **[Nexts.js](https://nextjs.org/)**
--   **[React](https://react.dev/)**
--   **[Tailwind CSS](https://tailwindcss.com/)**
--   **[Axios](https://www.npmjs.com/package/axios)**
--   **[Lucide](https://lucide.dev/)**
--   **[Prettier](https://prettier.io/)**
--   **[prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)**
--   **[use-debounce](https://www.npmjs.com/package/use-debounce)**
+-   [Nexts.js](https://nextjs.org/)
+-   [React](https://react.dev/)
+-   [Tailwind CSS](https://tailwindcss.com/)
+-   [Axios](https://www.npmjs.com/package/axios)
+-   [Lucide](https://lucide.dev/)
+-   [Prettier](https://prettier.io/)
+-   [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+-   [use-debounce](https://www.npmjs.com/package/use-debounce)
 
 Veja o arquivo: [package.json](https://github.com/m4rcone/world-ranks/blob/main/package.json)
 
 ## Autor
 
-- LinkedIn [marcone-lentz-boff](https://www.linkedin.com/in/marcone-lentz-boff)
-- GitHub [@m4rcone](https://{github.com/m4rcone})
+- [LinkedIn](https://www.linkedin.com/in/marcone-lentz-boff)
+- [GitHub](https://{github.com/m4rcone})
